@@ -27,5 +27,5 @@ module EFS {
 }
 
 module CloudWatch {
-  source - "./monitoring"
+  source = "./monitoring"
 }
