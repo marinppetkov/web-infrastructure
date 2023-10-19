@@ -1,1 +1,1 @@
-variable cloudwatch_suffix = {} 
+variable cloudwatch_suffix {} 
