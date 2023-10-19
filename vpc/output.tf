@@ -13,3 +13,7 @@ output "db_snet_1_id" {
 output "db_snet_2_id" {
     value = aws_subnet.db-snet-2.id
 }
+
+output "vpc_id" {
+    value = aws_vpc.app-vpc.id
+}
