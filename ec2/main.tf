@@ -4,8 +4,8 @@ resource "aws_instance" "web-server" {
   instance_type           = "t3.micro"
   key_name                = "webserver"
 
-  vpc_security_group_ids = [aws_security_group.webhost_sg.id]
-  subnet_id = aws_subnet.pub-snet-1.id
+  vpc_security_group_ids = [var.webhost_sg_id]
+  subnet_id = var.pub_snet_1_id
 
   connection {
     type     = "ssh"
@@ -46,8 +46,8 @@ resource "aws_instance" "web-server-2" {
   instance_type           = "t3.micro"
   key_name                = "webserver"
 
-  vpc_security_group_ids = [aws_security_group.webhost_sg.id]
-  subnet_id = aws_subnet.pub-snet-1.id
+  vpc_security_group_ids = [var.webhost_sg_id]
+  subnet_id = var.pub_snet_1_id
 
   connection {
     type     = "ssh"

@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "db-snet-group" {
   name       = "db-snet-group"
-  subnet_ids = [aws_subnet.db-snet-1.id,aws_subnet.db-snet-2.id]
+  subnet_ids = [var.db_snet_1_id,var.db_snet_2_id]
 }
 
 resource "aws_db_instance" "app_db" {
@@ -20,7 +20,7 @@ resource "aws_db_instance" "app_db" {
   backup_retention_period = 0
 
 
-  vpc_security_group_ids = [aws_security_group.rds_sg.id]
+  vpc_security_group_ids = [var.rds_sg_id]
 
   db_subnet_group_name = aws_db_subnet_group.db-snet-group.name
 

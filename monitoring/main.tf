@@ -9,6 +9,6 @@ resource "aws_cloudwatch_metric_alarm" "http-requests" {
   threshold                 = 10
   alarm_description         = "This metric monitors elb http requests"
   dimensions = {
-        LoadBalancer = aws_lb.alb.arn_suffix
+        LoadBalancer = var.cloudwatch_suffix
       }
 }

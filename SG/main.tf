@@ -1,7 +1,7 @@
 resource "aws_security_group" "alb_sg" {
   name        = "app-lb-sg"
   description = "Enable external http traffic for ALB"
-  vpc_id      = aws_vpc.app-vpc.id
+  vpc_id      = var.vpc_id
 
   ingress {
     description = "http access"
@@ -24,7 +24,7 @@ resource "aws_security_group" "alb_sg" {
 resource "aws_security_group" "webhost_sg" {
   name        = "webhost-sg"
   description = "Enable http traffic between ALB and Web servers and ssh mgmt traffic"
-  vpc_id      = aws_vpc.app-vpc.id
+  vpc_id      = var.vpc_id
 
   ingress {
     description     = "http access"
@@ -53,7 +53,7 @@ resource "aws_security_group" "webhost_sg" {
 resource "aws_security_group" "rds_sg" {
   name        = "rds-sg"
   description = "Enable connection between webhosts and mysql RDS"
-  vpc_id      = aws_vpc.app-vpc.id
+  vpc_id      = var.vpc_id
 
   ingress {
     description     = "db access"
@@ -79,7 +79,7 @@ resource "aws_security_group" "rds_sg" {
 resource "aws_security_group" "efs_sg" {
   name        = "efs-sg"
   description = "Security group for efs"
-  vpc_id      = aws_vpc.app-vpc.id
+  vpc_id      = var.vpc_id
 
   ingress {
     description = "efs access"
