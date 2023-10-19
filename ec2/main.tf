@@ -27,13 +27,13 @@ resource "aws_instance" "web-server" {
         "./build-deb.sh",
         "sudo apt-get -y install ./build/amazon-efs-utils*deb",
         "cd ..",
-        "sudo mount -t efs -o tls ${aws_efs_file_system.web-efs.dns_name}:/ /var/www/html",
-        "echo \"${aws_efs_file_system.web-efs.dns_name}:/ /var/www/html efs _netdev,noresvport,tls 0 0\" | sudo tee -a /etc/fstab",
+        "sudo mount -t efs -o tls ${var.efs_dns}:/ /var/www/html",
+        "echo \"${var.efs_dns}:/ /var/www/html efs _netdev,noresvport,tls 0 0\" | sudo tee -a /etc/fstab",
         "git clone https://github.com/shekeriev/bgapp",
         "sudo cp ~/bgapp/web/* /var/www/html",
         "sudo apt install default-mysql-client -y",
-        "mysql -h ${aws_db_instance.app_db.address} -u admin --password=Password123 < ./bgapp/db/db_setup.sql",
-        "sudo sed -i 's/db/${aws_db_instance.app_db.address}/g' /var/www/html/config.php",
+        "mysql -h ${var.rds_address} -u admin --password=Password123 < ./bgapp/db/db_setup.sql",
+        "sudo sed -i 's/db/${var.rds_address}/g' /var/www/html/config.php",
     ]
   }
   tags = {
@@ -69,8 +69,8 @@ resource "aws_instance" "web-server-2" {
         "./build-deb.sh",
         "sudo apt-get -y install ./build/amazon-efs-utils*deb",
         "cd ..",
-        "sudo mount -t efs -o tls ${aws_efs_file_system.web-efs.dns_name}:/ /var/www/html",
-        "echo \"${aws_efs_file_system.web-efs.dns_name}:/ /var/www/html efs _netdev,noresvport,tls 0 0\" | sudo tee -a /etc/fstab",
+        "sudo mount -t efs -o tls ${var.efs_dns}:/ /var/www/html",
+        "echo \"${var.efs_dns}:/ /var/www/html efs _netdev,noresvport,tls 0 0\" | sudo tee -a /etc/fstab",
     ]
   }
   tags = {

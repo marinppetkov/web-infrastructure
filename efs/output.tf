@@ -5,4 +5,3 @@ output "efs_dns" {
 output "efs_id" {
   value = "${aws_efs_file_system.web-efs.id}"
 }
-
