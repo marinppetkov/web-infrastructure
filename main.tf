@@ -12,7 +12,7 @@ module ec2 {
   pub_snet_1_id = module.vpc.pub_snet_1_id
   pub_snet_2_id = module.vpc.pub_snet_2_id
   efs_dns       = module.EFS.efs_dns
-  rds_address   = module.rds_address
+  rds_address   = module.Database.rds_address
 }
 
 module SecurityGroups {
