@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "db-snet-group" {
   name       = "db-snet-group"
-  subnet_ids = [var.db_snet_1_id,var.db_snet_2_id]
+  subnet_ids = [var.db_snet_1_id, var.db_snet_2_id]
 }
 
 resource "aws_db_instance" "app_db" {

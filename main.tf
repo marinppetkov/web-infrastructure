@@ -33,7 +33,7 @@ module LoadBalancer {
 module Database {
   source = "./DB"
   rds_sg_id    = module.SecurityGroups.rds_sg_id 
-  db_snet_1_id = module.vpc.db_snet_2_id
+  db_snet_1_id = module.vpc.db_snet_1_id
   db_snet_2_id = module.vpc.db_snet_2_id
 }
 
