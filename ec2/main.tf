@@ -47,7 +47,7 @@ resource "aws_instance" "web-server-2" {
   key_name                = "webserver"
 
   vpc_security_group_ids = [var.webhost_sg_id]
-  subnet_id = var.pub_snet_1_id
+  subnet_id = var.pub_snet_2_id
 
   connection {
     type     = "ssh"
