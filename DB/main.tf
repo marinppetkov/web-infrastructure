@@ -11,7 +11,7 @@ resource "aws_db_instance" "app_db" {
   #db_instance_class       = "db.m5.large"
   allocated_storage       = 20
   username                = "admin"
-  password                = "Password123"
+  password                = var.db_password
   multi_az                = false
   storage_type            = "gp2"
   storage_encrypted       = false

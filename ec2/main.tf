@@ -32,7 +32,7 @@ resource "aws_instance" "web-server" {
         "git clone https://github.com/shekeriev/bgapp",
         "sudo cp ~/bgapp/web/* /var/www/html",
         "sudo apt install default-mysql-client -y",
-        "mysql -h ${var.rds_address} -u admin --password=Password123 < ./bgapp/db/db_setup.sql",
+        "mysql -h ${var.rds_address} -u admin --password=${var.db_password} < ./bgapp/db/db_setup.sql",
         "sudo sed -i 's/db/${var.rds_address}/g' /var/www/html/config.php",
     ]
   }
