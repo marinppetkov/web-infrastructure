@@ -13,6 +13,7 @@ module ec2 {
   pub_snet_2_id = module.vpc.pub_snet_2_id
   efs_dns       = module.EFS.efs_dns
   rds_address   = module.Database.rds_address
+  db_password   = var.db_password
 }
 
 module SecurityGroups {
@@ -35,6 +36,7 @@ module Database {
   rds_sg_id    = module.SecurityGroups.rds_sg_id 
   db_snet_1_id = module.vpc.db_snet_1_id
   db_snet_2_id = module.vpc.db_snet_2_id
+  db_password  = var.db_password
 }
 
 module EFS {
