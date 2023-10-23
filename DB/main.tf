@@ -4,7 +4,7 @@ resource "aws_db_subnet_group" "db-snet-group" {
 }
 
 resource "aws_db_instance" "app_db" {
-  availability_zone      = "eu-central-1a"
+  #availability_zone      = "eu-central-1a"
   engine                  = "mysql"
   engine_version          = "5.7.43"
   instance_class          = "db.t2.micro"
