@@ -14,6 +14,7 @@ module ec2 {
   efs_dns       = module.EFS.efs_dns
   rds_address   = module.Database.rds_address
   db_password   = var.db_password
+  ec2_pem       = var.ec2_pem
 }
 
 module SecurityGroups {
