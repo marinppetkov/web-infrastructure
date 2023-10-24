@@ -53,7 +53,7 @@ resource "aws_instance" "web-server-2" {
   connection {
     type     = "ssh"
     user     = "admin"
-    private_key = file("webserver.pem")
+    private_key = var.ec2_pem
     host     = self.public_ip
   }
 
