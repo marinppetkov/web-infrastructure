@@ -12,7 +12,7 @@ resource "aws_db_instance" "app_db" {
   allocated_storage       = 20
   username                = "admin"
   password                = var.db_password
-  multi_az                = true
+  multi_az                = false
   storage_type            = "gp2"
   storage_encrypted       = false
   publicly_accessible     = false
