@@ -55,24 +55,7 @@ resource "aws_instance" "web-server-2" {
     user     = "admin"
     private_key = var.ec2_pem
     host     = self.public_ip
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-        "sudo apt update -y",
-        "sudo apt install apache2 -y",
-        "sudo apt install git -y",
-        "sudo apt-get install php-mysql -y",
-        "sudo apt -y install php php-common",
-        "sudo apt-get -y install binutils",
-        "git clone https://github.com/aws/efs-utils",
-        "cd efs-utils",
-        "./build-deb.sh",
-        "sudo apt-get -y install ./build/amazon-efs-utils*deb",
-        "cd ..",
-        "sudo mount -t efs -o tls ${var.efs_dns}:/ /var/www/html",
-        "echo \"${var.efs_dns}:/ /var/www/html efs _netdev,noresvport,tls 0 0\" | sudo tee -a /etc/fstab",
-    ]
+    user_data = file("init.sh")
   }
   tags = {
     Name = "web-server"
