@@ -49,7 +49,7 @@ resource "aws_instance" "web-server-2" {
 
   vpc_security_group_ids = [var.webhost_sg_id]
   subnet_id = var.pub_snet_2_id
-  user_data = "${file("init.sh")}"
+  user_data = "${file("./ec2/init.sh")}"
   tags = {
     Name = "web-server"
   }
