@@ -42,6 +42,7 @@ resource "aws_instance" "web-server" {
   }
 }
 
+/*
 resource "aws_instance" "web-server-2" {
   ami                     = "ami-05ee09b16a3aaa2fd" # Debian 12 (HVM), SSD Volume Type, x86  eu cent
   instance_type           = "t3.micro"
@@ -63,3 +64,4 @@ resource "aws_instance" "web-server-2" {
    depends_on = [aws_instance.web-server]
 
 }
+*/
