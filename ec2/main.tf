@@ -49,14 +49,7 @@ resource "aws_instance" "web-server-2" {
 
   vpc_security_group_ids = [var.webhost_sg_id]
   subnet_id = var.pub_snet_2_id
-
-  connection {
-    type     = "ssh"
-    user     = "admin"
-    private_key = var.ec2_pem
-    host     = self.public_ip
-    user_data = file("init.sh")
-  }
+  user_data = file("init.sh")
   tags = {
     Name = "web-server"
   }
