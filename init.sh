@@ -6,9 +6,7 @@ apt-get install php-mysql -y
 apt -y install php php-common
 apt-get -y install binutils
 git clone https://github.com/aws/efs-utils
-cd efs-uti
-./build-deb.sh
-apt-get -y install ./build/amazon-efs-utils*deb
-cd ..
+/efs-util/build-deb.sh
+apt-get -y install /efs-util/build/amazon-efs-utils*deb
 mount -t efs -o tls ${var.efs_dns}:/ /var/www/html
 echo \"${var.efs_dns}:/ /var/www/html efs _netdev,noresvport,tls 0 0\" | tee -a /etc/fstab
