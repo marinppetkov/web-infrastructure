@@ -49,7 +49,22 @@ resource "aws_instance" "web-server-2" {
 
   vpc_security_group_ids = [var.webhost_sg_id]
   subnet_id = var.pub_snet_2_id
-  user_data = "${file("./ec2/init.sh")}"
+  #user_data = "${file("./ec2/init.sh")}"
+    user_data = <<-EOT
+    #!/bin/bash
+    apt update -y
+    apt install apache2 -y
+    apt install git -y
+    apt-get install php-mysql -y
+    apt -y install php php-common
+    apt-get -y install binutils
+    git clone https://github.com/aws/efs-utils
+    cd /efs-utils
+    ./build-deb.sh
+    apt-get -y install /efs-utils/build/amazon-efs-utils*deb
+    mount -t efs -o tls ${var.efs_dns}:/ /var/www/html
+    echo \"${var.efs_dns}:/ /var/www/html efs _netdev,noresvport,tls 0 0\" | tee -a /etc/fstab
+  EOT
   tags = {
     Name = "web-server"
   }
