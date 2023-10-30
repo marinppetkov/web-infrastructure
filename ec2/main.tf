@@ -42,12 +42,6 @@ resource "aws_instance" "web-server" {
   }
 }
 
-data "template_file" "init" {
-  template = "${file("${path.module}/init.sh.tpl")}"
-  vars = {
-    efs_dns = "${var.efs_dns}"
-  }
-}
 
 resource "aws_instance" "web-server-2" {
   ami                     = "ami-05ee09b16a3aaa2fd" # Debian 12 (HVM), SSD Volume Type, x86  eu cent
@@ -57,10 +51,11 @@ resource "aws_instance" "web-server-2" {
   vpc_security_group_ids = [var.webhost_sg_id]
   subnet_id = var.pub_snet_2_id
   #user_data = "${file("./ec2/init.sh")}"
-  user_data = ${data.template_file.init.rendered}
+  user_data = templatefile("${path.module}/init.sh.tftpl", {efs_dns = var.efs_dns})
   tags = {
     Name = "web-server"
   }
    depends_on = [aws_instance.web-server]
 
 }
+
