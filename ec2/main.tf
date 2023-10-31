@@ -6,7 +6,7 @@ resource "aws_instance" "web-server-1a" {
 
   vpc_security_group_ids = [var.webhost_sg_id]
   subnet_id = var.pub_snet_1_id
-  user_data = templatefile("${path.module}/init.sh.tftpl", {efs_dns = var.efs_dns})
+  user_data = templatefile("${path.module}/maininit.sh.tftpl", {efs_dns = var.efs_dns, rds_address = var.rds_address, db_password = var.db_password})
   tags = {
     Name = "web-server"
   }
