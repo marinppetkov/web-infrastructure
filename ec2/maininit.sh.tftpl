@@ -16,5 +16,5 @@ cp /tmp/two-tier-website/webfiles/* /var/www/html
 apt install default-mysql-client -y
 mysql -h ${rds_address} -u admin --password=${db_password} < /tmp/two-tier-website/dbfiles/web.sql
 sed -i 's/database/${rds_address}/g' /var/www/html/index.php
-sed -i 's/Passwrod123/${db_password}/g' /var/www/html/index.php
+sed -i 's/Password123/${db_password}/g' /var/www/html/index.php
 sed -i 's/root/admin/g' /var/www/html/index.php
