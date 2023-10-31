@@ -11,10 +11,11 @@ cd /efs-utils
 apt-get -y install /efs-utils/build/amazon-efs-utils*deb
 mount -t efs -o tls ${efs_dns}:/ /var/www/html
 echo \"${efs_dns}:/ /var/www/html efs _netdev,noresvport,tls 0 0\" | tee -a /etc/fstab
+cd /tmp
 git clone https://github.com/marinppetkov/two-tier-website.git
-cp ./two-tier-website/webfiles /var/www/html
+cp /tmp/two-tier-website/webfiles /var/www/html
 apt install default-mysql-client -y
-mysql -h ${rds_address} -u admin --password=${db_password} < ./two-tier-website/dbfiles/web.sql
+mysql -h ${rds_address} -u admin --password=${db_password} < /tmp/two-tier-website/dbfiles/web.sql
 sed -i 's/database/${rds_address}/g' /var/www/html/index.php"
 sed -i 's/Passwrod123/${db_password}/g' /var/www/html/index.php"
 sed -i 's/root/admin/g' /var/www/html/index.php"
