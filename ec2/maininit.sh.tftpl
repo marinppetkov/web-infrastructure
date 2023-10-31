@@ -13,7 +13,7 @@ mount -t efs -o tls ${efs_dns}:/ /var/www/html
 echo \"${efs_dns}:/ /var/www/html efs _netdev,noresvport,tls 0 0\" | tee -a /etc/fstab
 cd /tmp
 git clone https://github.com/marinppetkov/two-tier-website.git
-cp /tmp/two-tier-website/webfiles /var/www/html
+cp /tmp/two-tier-website/webfiles/* /var/www/html
 apt install default-mysql-client -y
 mysql -h ${rds_address} -u admin --password=${db_password} < /tmp/two-tier-website/dbfiles/web.sql
 sed -i 's/database/${rds_address}/g' /var/www/html/index.php"
